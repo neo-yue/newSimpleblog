@@ -37,11 +37,6 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-
-//        View::composer('*',function ($view){
-//            $view->with('themes',Theme::all());   //option2
-//        });
-
 //        View::share('themes',Theme::all());  //option3
     }
 
