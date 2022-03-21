@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -18,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{Cookie::get('TestCookie')}}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -34,7 +36,23 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <div class="form-group col-md-4 ">
+                            <form name="setCookie"method="post" id ="setCookie" action="/theme/change" >
+                                @csrf
+                                <label for="theme">GEEKMemes:</label>
+                                <select name="theme" id="theme" onchange="fn()">
+                                    <option value="" rel="stylesheet">default</option>
+                                    @foreach($themes as $theme)
+                                        @if ($theme->cdn_url == Cookie::get('TestCookie'))
+                                        <option value="{{$theme->cdn_url}} " selected rel="stylesheet">{{$theme->name}}</option>
+                                        @else
+                                        <option value="{{$theme->cdn_url}} " rel="stylesheet">{{$theme->name}}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </form>
 
+                        </div>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -53,6 +71,10 @@
                             <li>
                                 <a href="/managers" class="nav-link" >Manage Users</a>
                             </li>
+                            <li>
+                                <a href="/themes" class="nav-link" >Manage Themes</a>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -81,4 +103,15 @@
         </main>
     </div>
 </body>
+<script>
+       // $('#theme').on('change',function (){
+       //     fn();
+       // })
+       function fn(){
+           $('#setCookie').submit();
+       }
+
+</script>
+
+
 </html>

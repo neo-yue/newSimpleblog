@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+
+
+use App\Theme;
+use App\View\Composers\ThemeComposer;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+//        View::composer('*',function ($view){
+//            $view->with('themes',ThemeComposer::class);
+//        });
+
+        View::share('themes',Theme::all());
     }
+
 }
