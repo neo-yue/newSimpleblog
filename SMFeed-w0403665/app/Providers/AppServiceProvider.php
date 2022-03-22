@@ -5,7 +5,7 @@ namespace App\Providers;
 
 
 use App\Theme;
-use App\View\Composers\themeCom;
+use App\View\Composers\themeComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
