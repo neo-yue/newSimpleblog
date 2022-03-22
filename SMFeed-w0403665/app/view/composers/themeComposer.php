@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
-class ThemeComposer{
+class themeComposer{
 
     public function compose(View $view){
         $view->with('themes',Theme::all());
