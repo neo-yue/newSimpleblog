@@ -12,7 +12,7 @@ class themeComposer{
         $view->with('themes',Theme::all());
         $url=DB::table("themes")->where('id',"=",Cookie::get('themeId'))->first();
 
-        $view->with('themeUrl',$url);//
+        $view->with('themeUrl',$url);   //test
     }
 
 }
